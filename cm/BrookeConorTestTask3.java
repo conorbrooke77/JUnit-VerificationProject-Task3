@@ -437,12 +437,13 @@ public class BrookeConorTestTask3 {
         assertEquals(new BigDecimal("10"), charge);
     }
 
+    //Modified this testcases charge value from 140 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase8() {
         // Maximum Possible Duration Stay:
         Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(0, 24));
-        assertEquals(new BigDecimal("140"), charge);
+        assertEquals(new BigDecimal("10"), charge);
     }
 
     @Test
