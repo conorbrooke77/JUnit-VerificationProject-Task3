@@ -488,12 +488,16 @@ public class BrookeConorTestTask3 {
         assertEquals(new BigDecimal("21.92"), charge);
     }
 
+    //Assumptions made with the roundings
+    //Error in code that has if calculating a Visitor, return 0 as the charge
+    //Modified this testcase's charge value from 30 to 10 as per the updated specification;
+    //Discount applied, the first 10.00 is free, 50% reduction above that, 20*0.5 =10
     @Test
     public void rateCalculateTestCase14() {
         // Visitor Car-park Kind:
         Rate rate = new Rate(CarParkKind.VISITOR, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(5, 8));
-        assertEquals(new BigDecimal("0"), charge);
+        assertEquals(new BigDecimal("10"), charge);
     }
 
     @Test
