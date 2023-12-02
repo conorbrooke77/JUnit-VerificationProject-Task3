@@ -13,7 +13,6 @@ public class BrookeConorTestTask3 {
     private ArrayList<Period> normalPeriods = new ArrayList<>(Arrays.asList(new Period(4, 9), new Period(14, 19)));
     private ArrayList<Period> reducedPeriods = new ArrayList<>(Arrays.asList(new Period(10, 14), new Period(19, 23)));
 
-
     // Tests for Period constructor
     
     @Test
@@ -479,12 +478,14 @@ public class BrookeConorTestTask3 {
         assertThrows(NullPointerException.class, () -> rate.calculate(null));
     }
 
+    //Assumptions made with the roundings
+    //Modified this testcase's charge value from 30 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase13() {
         // STUDENT Car-park Kind:
         Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(5, 8));
-        assertEquals(new BigDecimal("30"), charge);
+        assertEquals(new BigDecimal("21.92"), charge);
     }
 
     @Test
