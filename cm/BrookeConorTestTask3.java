@@ -419,20 +419,22 @@ public class BrookeConorTestTask3 {
         assertEquals(new BigDecimal("10"), charge);
     }
 
+    //Modified this testcases charge value from 30 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase6() {
         // Ends at Rate Period Boundary:
         Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(8, 14));
-        assertEquals(new BigDecimal("30"), charge);
+        assertEquals(new BigDecimal("10"), charge);
     }
 
+    //Modified this testcases charge value from 120 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase7() {
         // Boundary of Multiple Rate Periods:
         Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(4, 19));
-        assertEquals(new BigDecimal("120"), charge);
+        assertEquals(new BigDecimal("10"), charge);
     }
 
     @Test
