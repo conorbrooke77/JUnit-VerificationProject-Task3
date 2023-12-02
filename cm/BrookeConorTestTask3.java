@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BrookeConorTestTask2 {
+public class BrookeConorTestTask3 {
 
     //Some predefined values for a few of the tests below;
     private ArrayList<Period> normalPeriods = new ArrayList<>(Arrays.asList(new Period(4, 9), new Period(14, 19)));
@@ -393,12 +393,13 @@ public class BrookeConorTestTask2 {
         assertEquals(new BigDecimal("10"), charge);
     }
 
+    //Modified this testcases charge value from 40 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase3() {
         // Overlaps Normal and Reduced Rate Periods:
         Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(8, 15));
-        assertEquals(new BigDecimal("40"), charge);
+        assertEquals(new BigDecimal("10"), charge);
     }
 
     @Test
@@ -409,12 +410,13 @@ public class BrookeConorTestTask2 {
         assertEquals(BigDecimal.ZERO, charge);
     }
 
+    //Modified this testcases charge value from 40 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase5() {
         // Starts at Rate Period Boundary:
         Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(4, 8));
-        assertEquals(new BigDecimal("40"), charge);
+        assertEquals(new BigDecimal("10"), charge);
     }
 
     @Test
