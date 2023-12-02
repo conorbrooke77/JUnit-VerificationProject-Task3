@@ -393,7 +393,7 @@ public class BrookeConorTestTask3 {
         assertEquals(new BigDecimal("10"), charge);
     }
 
-    //Modified this testcases charge value from 40 to 10 as per the updated specification;
+    //Modified this testcase's charge value from 40 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase3() {
         // Overlaps Normal and Reduced Rate Periods:
@@ -410,7 +410,7 @@ public class BrookeConorTestTask3 {
         assertEquals(BigDecimal.ZERO, charge);
     }
 
-    //Modified this testcases charge value from 40 to 10 as per the updated specification;
+    //Modified this testcase's charge value from 40 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase5() {
         // Starts at Rate Period Boundary:
@@ -419,7 +419,7 @@ public class BrookeConorTestTask3 {
         assertEquals(new BigDecimal("10"), charge);
     }
 
-    //Modified this testcases charge value from 30 to 10 as per the updated specification;
+    //Modified this testcase's charge value from 30 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase6() {
         // Ends at Rate Period Boundary:
@@ -428,7 +428,7 @@ public class BrookeConorTestTask3 {
         assertEquals(new BigDecimal("10"), charge);
     }
 
-    //Modified this testcases charge value from 120 to 10 as per the updated specification;
+    //Modified this testcase's charge value from 120 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase7() {
         // Boundary of Multiple Rate Periods:
@@ -437,7 +437,7 @@ public class BrookeConorTestTask3 {
         assertEquals(new BigDecimal("10"), charge);
     }
 
-    //Modified this testcases charge value from 140 to 10 as per the updated specification;
+    //Modified this testcase's charge value from 140 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase8() {
         // Maximum Possible Duration Stay:
@@ -454,20 +454,22 @@ public class BrookeConorTestTask3 {
         assertEquals(BigDecimal.ZERO, charge);
     }
 
+    //Modified this testcase's charge value from 75 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase10() {
         // Overlaps with Transition Points:
         Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(9, 20));
-        assertEquals(new BigDecimal("75"), charge);
+        assertEquals(new BigDecimal("10"), charge);
     }
 
+    //Modified this testcase's charge value from 4020 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase11() {
         // Large Difference Between Rates:
         Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal("1000"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(6, 15));
-        assertEquals(new BigDecimal("4020"), charge);
+        assertEquals(new BigDecimal("10"), charge);
     }
 
     @Test
