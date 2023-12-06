@@ -34,7 +34,7 @@ public class Rate {
 
         this.kind = kind;
 
-        setKindCalculateRate(this.kind);
+        calculateParkingRate = setKindCalculateRate(this.kind);
 
         this.hourlyNormalRate = normalRate;
         this.hourlyReducedRate = reducedRate;
@@ -42,24 +42,22 @@ public class Rate {
         this.normal = normalPeriods;
     }
 
-    private void setKindCalculateRate(CarParkKind kind) {
+    /**
+     * Sets the calculateParkingRate field with an appropriate ICalculateParkingRate instance
+     * based on the specified CarParkKind.
+     *
+     * @param kind The type of person in using the Car Park, determining the rate calculation strategy.
+     * @return ICalculateParkingRate for specified kind.
+     */
+    private ICalculateParkingRate setKindCalculateRate(CarParkKind kind) {
 
-        switch (kind) {
-            case VISITOR:
-                calculateParkingRate = new VisitorRateCalculator();
-                break;
-            case STAFF:
-                calculateParkingRate = new StaffRateCalculator();
-                break;
-            case MANAGEMENT:
-                calculateParkingRate = new ManagementRateCalculator();
-                break;
-            case STUDENT:
-                calculateParkingRate = new StudentRateCalculator();
-                break;
-            default:
-                throw new IllegalArgumentException("Not a valid Kind");
-        }
+        return switch (kind) {
+            case VISITOR -> new VisitorRateCalculator();
+            case STAFF -> new StaffRateCalculator();
+            case MANAGEMENT -> new ManagementRateCalculator();
+            case STUDENT -> new StudentRateCalculator();
+            default -> throw new IllegalArgumentException("Not a valid Kind");
+        };
     }
 
     /**
