@@ -381,7 +381,7 @@ public class BrookeConorTestTask3 {
         // Fully Within Normal Rate Period:
         Rate rate = new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(5, 8));
-        assertEquals(new BigDecimal("10"), charge);
+        assertEquals(new BigDecimal("30"), charge);
     }
 
     @Test
