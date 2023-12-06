@@ -9,6 +9,8 @@ public class Rate {
     private ArrayList<Period> reduced;
     private ArrayList<Period> normal;
 
+    private ICalculateParkingRate calculateParkingRate;
+
     public Rate(CarParkKind kind, BigDecimal normalRate, BigDecimal reducedRate, ArrayList<Period> normalPeriods, ArrayList<Period> reducedPeriods) {
         if (reducedPeriods == null || normalPeriods == null) {
             throw new IllegalArgumentException("periods cannot be null");
@@ -29,11 +31,35 @@ public class Rate {
         if (!isValidPeriods(reducedPeriods, normalPeriods)) {
             throw new IllegalArgumentException("The periods overlaps");
         }
+
         this.kind = kind;
+
+        setKindCalculateRate(this.kind);
+
         this.hourlyNormalRate = normalRate;
         this.hourlyReducedRate = reducedRate;
         this.reduced = reducedPeriods;
         this.normal = normalPeriods;
+    }
+
+    private void setKindCalculateRate(CarParkKind kind) {
+
+        switch (kind) {
+            case VISITOR:
+                calculateParkingRate = new VisitorRateCalculator();
+                break;
+            case STAFF:
+                calculateParkingRate = new StaffRateCalculator();
+                break;
+            case MANAGEMENT:
+                calculateParkingRate = new ManagementRateCalculator();
+                break;
+            case STUDENT:
+                calculateParkingRate = new StudentRateCalculator();
+                break;
+            default:
+                throw new IllegalArgumentException("Not a valid Kind");
+        }
     }
 
     /**
@@ -87,11 +113,13 @@ public class Rate {
         return isValid;
     }
     public BigDecimal calculate(Period periodStay) {
-        int normalRateHours = periodStay.occurences(normal);
-        int reducedRateHours = periodStay.occurences(reduced);
-        if (this.kind==CarParkKind.VISITOR) return BigDecimal.valueOf(0);
-        return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
-                this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+        int normalRateHours = periodStay.occurences(normal); // 3
+        System.out.println(normalRateHours);
+        int reducedRateHours = periodStay.occurences(reduced); // 0
+        System.out.println(reducedRateHours);
+
+        //if (this.kind==CarParkKind.VISITOR) return BigDecimal.valueOf(0);
+        return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
     }
 
 }

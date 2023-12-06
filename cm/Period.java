@@ -24,10 +24,12 @@ public class Period {
         return hour >= this.startHour && hour < this.endHour;
     }
 
+    //hour == 5 ||| List = Period(4, 9), Period(14, 19)
     private static Boolean isIn(int hour, List<Period> list) {
         Boolean isIn = false;
         int i = 0;
         while (i < list.size() && !isIn) {
+
             isIn = list.get(i).isIn(hour);
             i++;
         }
@@ -47,11 +49,16 @@ public class Period {
      * @param list the list of periods to check
      * @return the number of full hours covered by this period
      */
+    // Period Stay (5, 8);
     public int occurences(List<Period> list) {
+        //    private ArrayList<Period> normalPeriods = new ArrayList<>(Arrays.asList(new Period(4, 9), new Period(14, 19)));
+        //    private ArrayList<Period> reducedPeriods = new ArrayList<>(Arrays.asList(new Period(10, 14), new Period(19, 23)));
         int occurences = 0;
+        // this.startHour == 5 || this.endHour == 8;
         for (int hour = this.startHour; hour < this.endHour; hour++) {
+            //5
             if (isIn(hour, list)) {
-                occurences++;
+                occurences++; //+1 //+1 //+1
             }
         }
         return occurences;

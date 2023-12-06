@@ -518,5 +518,5 @@ public class BrookeConorTestTask3 {
         assertEquals(BigDecimal.ZERO, charge);
     }
 
-
 }
+
