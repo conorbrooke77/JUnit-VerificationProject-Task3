@@ -18,7 +18,7 @@ public class StudentRateCalculator implements ICalculateParkingRate {
             // Subtract the reduced amount from the excess amount and add the limit
             BigDecimal newAmount = calculatedRate.subtract(reducedAmount);
 
-            //Return the newAmount using the RoundingMode for currency
+            // Ensure the result is rounded to 2 decimal places, suitable for currency
             return newAmount.setScale(2, RoundingMode.HALF_EVEN);
         } else {
             // If the calculated rate is below the threshold, return it as is
