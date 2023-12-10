@@ -533,6 +533,7 @@ public class BrookeConorTestTask3 {
         assertEquals(new BigDecimal("5"), charge);
     }
 
+
     //Assumptions made with the roundings
     //Modified this testcase's charge value from 30 to 10 as per the updated specification;
     @Test
