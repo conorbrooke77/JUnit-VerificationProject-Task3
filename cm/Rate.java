@@ -124,6 +124,9 @@ public class Rate {
 
         if (kind.equals(CarParkKind.VISITOR)) {
             return calculateParkingRate.calculateRate(calculateBaseRate);
+        } else if (kind.equals(CarParkKind.MANAGEMENT)) {
+            if (calculateBaseRate.compareTo(new BigDecimal(5)) <=0 )
+                return new BigDecimal(5);
         }
 
         return calculateBaseRate;
