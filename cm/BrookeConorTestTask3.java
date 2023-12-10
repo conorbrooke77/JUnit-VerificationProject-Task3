@@ -479,30 +479,8 @@ public class BrookeConorTestTask3 {
         assertThrows(NullPointerException.class, () -> rate.calculate(null));
     }
 
-    //Assumptions made with the roundings
-    //Modified this testcase's charge value from 30 to 10 as per the updated specification;
     @Test
     public void rateCalculateTestCase13() {
-        // STUDENT Car-park Kind:
-        Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
-        BigDecimal charge = rate.calculate(new Period(5, 8));
-        assertEquals(new BigDecimal("21.92"), charge);
-    }
-
-    //Assumptions made with the roundings
-    //Error in code that has if calculating a Visitor, return 0 as the charge
-    //Modified this testcase's charge value from 30 to 10 as per the updated specification;
-    //Discount applied, the first 10.00 is free, 50% reduction above that, 20*0.5 =10
-    @Test
-    public void rateCalculateTestCase14() {
-        // Visitor Car-park Kind:
-        Rate rate = new Rate(CarParkKind.VISITOR, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
-        BigDecimal charge = rate.calculate(new Period(5, 8));
-        assertEquals(new BigDecimal("10.00"), charge);
-    }
-
-    @Test
-    public void rateCalculateTestCase15() {
         // Normal and Reduced Period Lists are empty:
         ArrayList<Period> emptyNormalPeriods = new ArrayList<>();
         ArrayList<Period> emptyReducedPeriods = new ArrayList<>();
@@ -512,11 +490,45 @@ public class BrookeConorTestTask3 {
     }
 
     @Test
-    public void rateCalculateTestCase16() {
+    public void rateCalculateTestCase14() {
         //Calculating when Normal and Reduced Rates are Zero
         Rate rate = new Rate(CarParkKind.STAFF, BigDecimal.ZERO, BigDecimal.ZERO, normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(5, 8));
         assertEquals(BigDecimal.ZERO, charge);
+    }
+
+    // VISITOR Kind Test Cases
+
+    //Assumptions made with the roundings
+    //Error in code that has if calculating a Visitor, return 0 as the charge
+    //Modified this testcase's charge value from 30 to 10 as per the updated specification;
+    //Discount applied, the first 10.00 is free, 50% reduction above that, 20*0.5 =10
+    @Test
+    public void rateCalculateTestCase15() {
+        // Visitor Car-park Kind total calculated cost is greater than 10.00
+        Rate rate = new Rate(CarParkKind.VISITOR, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
+        BigDecimal charge = rate.calculate(new Period(5, 8));
+        assertEquals(new BigDecimal("10.00"), charge);
+    }
+    @Test
+    public void rateCalculateTestCase16() {
+        // Visitor Car-park Kind total calculated cost is equal to 10.00, making the expected payment free.
+        Rate rate = new Rate(CarParkKind.VISITOR, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
+        BigDecimal charge = rate.calculate(new Period(5, 6));
+        assertEquals(new BigDecimal("0"), charge);
+    }
+
+
+
+
+    //Assumptions made with the roundings
+    //Modified this testcase's charge value from 30 to 10 as per the updated specification;
+    @Test
+    public void rateCalculateTestCase22() {
+        // STUDENT Car-park Kind:
+        Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
+        BigDecimal charge = rate.calculate(new Period(5, 8));
+        assertEquals(new BigDecimal("21.92"), charge);
     }
 
 }
