@@ -31,6 +31,9 @@ public class Rate {
         if (!isValidPeriods(reducedPeriods, normalPeriods)) {
             throw new IllegalArgumentException("The periods overlaps");
         }
+        if (kind == null) {
+            throw new IllegalArgumentException("CarParkKind value is required and cannot be null.");
+        }
 
         this.kind = kind;
 

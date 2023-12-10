@@ -212,8 +212,9 @@ public class BrookeConorTestTask3 {
     @Test
     public void rateConstructorTestCase2() {
         // Invalid Kind (null)
-        assertInstanceOf(Rate.class, 
-            new Rate(null, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods));
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Rate(null, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
+        });
     }
 
     @Test
