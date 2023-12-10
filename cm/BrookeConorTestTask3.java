@@ -525,6 +525,14 @@ public class BrookeConorTestTask3 {
         assertEquals(new BigDecimal("0.01"), charge);
     }
 
+    @Test
+    public void rateCalculateTestCase18() {
+        // MANAGEMENT Car-park Kind is in a free period
+        Rate rate = new Rate(CarParkKind.MANAGEMENT, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
+        BigDecimal charge = rate.calculate(new Period(9, 10));
+        assertEquals(new BigDecimal("5"), charge);
+    }
+
     //Assumptions made with the roundings
     //Modified this testcase's charge value from 30 to 10 as per the updated specification;
     @Test
