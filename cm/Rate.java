@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,9 +124,17 @@ public class Rate {
         BigDecimal calculateBaseRate = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
 
         if (kind.equals(CarParkKind.VISITOR)) {
+
+            if (calculateBaseRate.compareTo(new BigDecimal("10")) > 0) {
+                BigDecimal REDUCTION_RATE = new BigDecimal("0.50");
+                BigDecimal chargeableAmount = calculateBaseRate.subtract(new BigDecimal("10"));
+                BigDecimal reducedAmount = chargeableAmount.multiply(REDUCTION_RATE);
+
+                return reducedAmount.setScale(2, RoundingMode.HALF_EVEN);
+            }
+
             return calculateParkingRate.calculateRate(calculateBaseRate);
         }
-
         return calculateBaseRate;
     }
 

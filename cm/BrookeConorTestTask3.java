@@ -521,7 +521,7 @@ public class BrookeConorTestTask3 {
     public void rateCalculateTestCase17() {
         // Visitor Car-park Kind total calculated cost is just above the free boundary 10
         Rate rate = new Rate(CarParkKind.VISITOR, new BigDecimal("10"), new BigDecimal("5.01"), normalPeriods, reducedPeriods);
-        BigDecimal charge = rate.calculate(new Period(8, 11));
+        BigDecimal charge = rate.calculate(new Period(10, 12));
         assertEquals(new BigDecimal("0.01"), charge);
     }
 
