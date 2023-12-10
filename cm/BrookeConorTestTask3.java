@@ -517,9 +517,13 @@ public class BrookeConorTestTask3 {
         BigDecimal charge = rate.calculate(new Period(5, 6));
         assertEquals(new BigDecimal("0"), charge);
     }
-
-
-
+    @Test
+    public void rateCalculateTestCase17() {
+        // Visitor Car-park Kind total calculated cost is just above the free boundary 10
+        Rate rate = new Rate(CarParkKind.VISITOR, new BigDecimal("10"), new BigDecimal("5.01"), normalPeriods, reducedPeriods);
+        BigDecimal charge = rate.calculate(new Period(8, 11));
+        assertEquals(new BigDecimal("0.01"), charge);
+    }
 
     //Assumptions made with the roundings
     //Modified this testcase's charge value from 30 to 10 as per the updated specification;
