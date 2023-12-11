@@ -114,23 +114,13 @@ public class Rate {
         return isValid;
     }
     public BigDecimal calculate(Period periodStay) {
-        int normalRateHours = periodStay.occurences(normal); // 3
-        System.out.println(normalRateHours);
-        int reducedRateHours = periodStay.occurences(reduced); // 0
-        System.out.println(reducedRateHours);
+        int normalRateHours = periodStay.occurences(normal);
+        int reducedRateHours = periodStay.occurences(reduced);
 
-        //if (this.kind==CarParkKind.VISITOR) return BigDecimal.valueOf(0);
-        BigDecimal calculateBaseRate = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+        BigDecimal calculateBaseRate = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours)))
+                .add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
 
-        if (kind.equals(CarParkKind.VISITOR)) {
-            return calculateParkingRate.calculateRate(calculateBaseRate);
-        } else if (kind.equals(CarParkKind.MANAGEMENT)) {
-            return calculateParkingRate.calculateRate(calculateBaseRate);
-        } else if (kind.equals(CarParkKind.STUDENT)) {
-            return calculateParkingRate.calculateRate(calculateBaseRate);
-        }
-
-        return calculateBaseRate;
+        return calculateParkingRate.calculateRate(calculateBaseRate);
     }
 
 }

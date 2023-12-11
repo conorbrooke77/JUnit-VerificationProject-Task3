@@ -18,13 +18,13 @@ public class BrookeConorTestTask3 {
     @Test
     public void periodConstructorTestCase1() {  
         // Start is less than 0.
-        assertThrows(IllegalArgumentException.class, () -> { new Period(-1, 5); });
+        assertThrows(IllegalArgumentException.class, () -> new Period(-1, 5));
     }
 
     @Test
     public void periodConstructorTestCase2() {
         // Start is greater than 24.      
-        assertThrows(IllegalArgumentException.class, () -> { new Period(25, 26); });
+        assertThrows(IllegalArgumentException.class, () -> new Period(25, 26));
     }
 
     @Test
@@ -36,25 +36,25 @@ public class BrookeConorTestTask3 {
     @Test
     public void periodConstructorTestCase4() {
         // Start is at the boundary end. 
-        assertThrows(IllegalArgumentException.class, () -> { new Period(24, 24);});
+        assertThrows(IllegalArgumentException.class, () -> new Period(24, 24));
     }
 
     @Test
     public void periodConstructorTestCase5() {
         // End is less than 0.
-        assertThrows(IllegalArgumentException.class, () -> { new Period(5, -1);});
+        assertThrows(IllegalArgumentException.class, () -> new Period(5, -1));
     }
 
     @Test
     public void periodConstructorTestCase6() {
         // End is greater than 24.
-        assertThrows(IllegalArgumentException.class, () -> { new Period(5, 25);});
+        assertThrows(IllegalArgumentException.class, () -> new Period(5, 25));
     }
 
     @Test
     public void periodConstructorTestCase7() { 
         // End is at the very beginning.
-        assertThrows(IllegalArgumentException.class, () -> { new Period(0, 0);});
+        assertThrows(IllegalArgumentException.class, () -> new Period(0, 0));
     }
 
     @Test
@@ -66,13 +66,13 @@ public class BrookeConorTestTask3 {
     @Test
     public void periodConstructorTestCase9() {
         // Start is greater than end (short duration).
-        assertThrows(IllegalArgumentException.class, () -> { new Period(1, 0); });
+        assertThrows(IllegalArgumentException.class, () -> new Period(1, 0));
     }
 
     @Test
     public void periodConstructorTestCase10() {
         // Start is greater than end (longer duration).
-        assertThrows(IllegalArgumentException.class, () -> { new Period(23, 2); });
+        assertThrows(IllegalArgumentException.class, () -> new Period(23, 2));
     }
 
     @Test
@@ -90,13 +90,13 @@ public class BrookeConorTestTask3 {
     @Test
     public void periodConstructorTestCase13() {
         // Start < 24 and end > 24.
-        assertThrows(IllegalArgumentException.class, () -> { new Period(25, 10); });
+        assertThrows(IllegalArgumentException.class, () -> new Period(25, 10));
     }
 
     @Test
     public void periodConstructorTestCase16() {
         // Both start and end are the same and within the valid range.
-        assertThrows(IllegalArgumentException.class, () -> { new Period(10, 10); });
+        assertThrows(IllegalArgumentException.class, () -> new Period(10, 10));
     }
 
     // Tests for Period duration() method
@@ -212,25 +212,19 @@ public class BrookeConorTestTask3 {
     @Test
     public void rateConstructorTestCase2() {
         // Invalid Kind (null)
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(null, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(null, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods));
     }
 
     @Test
     public void rateConstructorTestCase3() {
         // Negative normal rate value
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, new BigDecimal("-1"), new BigDecimal("-5"), new ArrayList<>(), new ArrayList<>());
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("-1"), new BigDecimal("-5"), new ArrayList<>(), new ArrayList<>()));
     }
 
     @Test
     public void rateConstructorTestCase4() {
         // Null normal rate value
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, null, BigDecimal.ZERO, new ArrayList<>(), new ArrayList<>());
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, null, BigDecimal.ZERO, new ArrayList<>(), new ArrayList<>()));
     }
 
     @Test
@@ -249,26 +243,20 @@ public class BrookeConorTestTask3 {
     @Test
     public void rateConstructorTestCase7() {
         // Negative reduced rate value
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("-1"), new ArrayList<>(), new ArrayList<>());
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("-1"), new ArrayList<>(), new ArrayList<>()));
     }
 
     @Test
     public void rateConstructorTestCase8() {
         //Null reduced rate value
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, new BigDecimal("10"), null, normalPeriods, reducedPeriods);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("10"), null, normalPeriods, reducedPeriods));
     }
 
 
     @Test
     public void rateConstructorTestCase9() {
         // Invalid Scenario: normalRate < reducedRate
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, new BigDecimal("1.8"), new BigDecimal("10.8"), new ArrayList<>(), new ArrayList<>());
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("1.8"), new BigDecimal("10.8"), new ArrayList<>(), new ArrayList<>()));
     }
 
     
@@ -284,17 +272,13 @@ public class BrookeConorTestTask3 {
     @Test
     public void rateConstructorTestCase11() {
         // Null normalPeriods List
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), null, reducedPeriods);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), null, reducedPeriods));
     }
 
     @Test
     public void rateConstructorTestCase12() {
         // Null reducedPeriods List
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, null);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, null));
     }
 
     @Test
@@ -306,7 +290,7 @@ public class BrookeConorTestTask3 {
     @Test
     public void rateConstructorTestCase14() {
         // Both lists are null
-        assertThrows(IllegalArgumentException.class, () -> { new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), null, null);});
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("5"), null, null));
     }
 
 
@@ -320,9 +304,7 @@ public class BrookeConorTestTask3 {
         // This will overlap with an existing period in normalPeriods
         normalPeriods.add(new Period(3, 6));
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("1.8"), normalPeriods, reducedPeriods);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("1.8"), normalPeriods, reducedPeriods));
 
         // Removing for other tests using normalPeriods ArrayList
         normalPeriods.remove(2);
@@ -335,9 +317,7 @@ public class BrookeConorTestTask3 {
         // This will overlap with an existing period in reducedPeriods
         reducedPeriods.add(new Period(12, 15));
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("1.8"), normalPeriods, reducedPeriods);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("10"), new BigDecimal("1.8"), normalPeriods, reducedPeriods));
 
         // Removing for other tests using reducedPeriods ArrayList
         reducedPeriods.remove(2);
@@ -350,9 +330,7 @@ public class BrookeConorTestTask3 {
         // This period in reducedPeriods will overlap with an existing period in normalPeriods
         reducedPeriods.add(new Period(3, 6));
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, new BigDecimal("10"), BigDecimal.ZERO, normalPeriods, reducedPeriods);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("10"), BigDecimal.ZERO, normalPeriods, reducedPeriods));
 
         // Removing for other tests using normalPeriods ArrayList
         reducedPeriods.remove(2);
@@ -365,9 +343,7 @@ public class BrookeConorTestTask3 {
         // This will overlap with an existing period in normalPeriods. This period will be added to the start of the array.
         normalPeriods.add(0,new Period(11, 12));
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Rate(CarParkKind.STAFF, new BigDecimal("10"), BigDecimal.ZERO, normalPeriods, reducedPeriods);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STAFF, new BigDecimal("10"), BigDecimal.ZERO, normalPeriods, reducedPeriods));
 
         // Removing for other tests using normalPeriods ArrayList
         reducedPeriods.remove(0);
