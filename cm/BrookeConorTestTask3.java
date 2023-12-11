@@ -535,5 +535,13 @@ public class BrookeConorTestTask3 {
         assertEquals(new BigDecimal("21.92"), charge);
     }
 
+    @Test
+    public void rateCalculateTestCase22() {
+        // STUDENT Car-park Kind is below reduction rate
+        Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
+        BigDecimal charge = rate.calculate(new Period(10, 11));
+        assertEquals(new BigDecimal("5"), charge);
+    }
+
 }
 
