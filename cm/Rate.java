@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,6 +127,16 @@ public class Rate {
             return calculateParkingRate.calculateRate(calculateBaseRate);
         } else if (kind.equals(CarParkKind.MANAGEMENT)) {
             return calculateParkingRate.calculateRate(calculateBaseRate);
+        } else if (kind.equals(CarParkKind.STUDENT)) {
+            BigDecimal aboveLimit = calculateBaseRate.subtract(new BigDecimal("5.5"));
+
+            // Apply a 33% reduction
+            BigDecimal reducedAmount = aboveLimit.multiply(new BigDecimal("0.33"));
+
+            // Subtract the reduced amount from the excess amount and add the limit
+            BigDecimal newAmount = calculateBaseRate.subtract(reducedAmount);
+
+            return newAmount.setScale(2, RoundingMode.HALF_EVEN);
         }
 
         return calculateBaseRate;
