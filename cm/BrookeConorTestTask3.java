@@ -511,6 +511,14 @@ public class BrookeConorTestTask3 {
 
     @Test
     public void rateCalculateTestCase19() {
+        // MANAGEMENT Car-park Kind is above minimum payable
+        Rate rate = new Rate(CarParkKind.MANAGEMENT, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
+        BigDecimal charge = rate.calculate(new Period(10, 14));
+        assertEquals(new BigDecimal("20"), charge);
+    }
+
+    @Test
+    public void rateCalculateTestCase20() {
         // STUDENT Car-park Kind is just above the no-reduction boundary
         Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal("10"), new BigDecimal("5.52"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(21, 22));
@@ -520,7 +528,7 @@ public class BrookeConorTestTask3 {
     //Assumptions made with the roundings
     //Modified this testcase's charge value from 30 to 10 as per the updated specification;
     @Test
-    public void rateCalculateTestCase22() {
+    public void rateCalculateTestCase21() {
         // STUDENT Car-park Kind:
         Rate rate = new Rate(CarParkKind.STUDENT, new BigDecimal("10"), new BigDecimal("5"), normalPeriods, reducedPeriods);
         BigDecimal charge = rate.calculate(new Period(5, 8));
